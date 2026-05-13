@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+    <h2>My Profile</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+            <label>Display Name</label><br>
+            <input type="text" name="display_name" value="{{ current_user.display_name }}" required>
+        </div>
+
+        <div>
+            <label>Upload Profile Picture</label><br>
+            <input type="file" name="profile_picture" accept=".jpg,.jpeg,.png">
+        </div>
+
+        <button type="submit">Save Profile</button>
+    </form>
+
+    <h3>Current Profile Picture</h3>
+    <img
+        src="{{ url_for('static', filename='uploads/' + current_user.image_filename) }}"
+        alt="Profile Picture"
+        width="150"
+    >
+{% endblock %}
